@@ -29,7 +29,7 @@ int getChosenOccurrence(map<int, vector<int>>& numMap, int searchedOcc, int sear
         //it to the 0-indexed vector (0th position in vector = 1st occurence, that's the reason for '-1').
         //And then i need to add '+1' on the value itself returned, cuz the position of the occurrence (which
         //is each element in the vec) is also 1-indexed (cause each element (number) in the vector is a position/index
-        //in the metaphorical list, that's why these '+1' and '-1' don't cancel out, each one is mean to correct
+        //in the metaphorical list, that's why these '+1' and '-1' don't cancel out, each one is meant to correct
         //the indexes of their own lists)
         return numMap[searchedNum][searchedOcc - 1] + 1;
     }
