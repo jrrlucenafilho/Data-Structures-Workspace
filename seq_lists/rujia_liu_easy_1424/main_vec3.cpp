@@ -1,56 +1,72 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <bits/stdc++.h>
 
 //using namespace std; (+bro is slowness-phobic)
 //Version with fors
+
+using std::cin;
+using std::cout;
+using std::vector;
+//using std::count;
+
+int findNthOccurrence(const vector<int>& numVec, int targetNum, int targetOccQuant)
+{
+    int occurrences = 0;
+
+    for(int i = 0; i < (int)numVec.size(); i++){
+
+        if(numVec[i] == 0){
+            return 0;   //Since 0 means empty spot here
+        }
+
+        if(numVec[i] == targetNum){
+            occurrences++;
+
+            if(occurrences == targetOccQuant){
+                return i+1;     //Return the index of the n-th occurrence
+            }
+        }
+    }
+
+    return 0;
+}
 
 int main(void)
 {
     int vecElementQuant, queries;
     int pushBackNum;
     int searchedOccurrenceQuant, searchedNum;
-    int numOccurrences;
-    //bool occurrenceFound = false;
-    int i, j;
+    int numOccurrences = 0;
+    //int i;
 
-    std::vector<int> numVec;
+    vector<int> numVec;
 
     //Pre-alloc so it doesn't need to keep doubling the first time, heap-alloc'ing memory for it (+speed)
-    numVec.reserve(100);
+    numVec.reserve(1000000);
 
     //Searching
-    while(std::cin.eof() == false){
-        std::cin >> vecElementQuant >> queries;
+    while(cin >> vecElementQuant >> queries){
 
         //Make the vector itself from input
-        for(i = 0; i < vecElementQuant; i++){
-            std::cin >> pushBackNum;
+        while(vecElementQuant--){
+            cin >> pushBackNum;
             numVec.push_back(pushBackNum);
         }
         
-        for(i = 0; i < queries; i++){
-            std::cin >> searchedOccurrenceQuant >> searchedNum;
+        while(queries--){
+            cin >> searchedOccurrenceQuant >> searchedNum;
 
-            numOccurrences = std::count(numVec.begin(), numVec.end(), searchedNum);
+            numOccurrences = count(numVec.begin(), numVec.end(), searchedNum);
 
             //Stops here if no occurrences of the searched number (+speed)
             if(numOccurrences == 0){
-                std::cout << "0\n";
+                cout << "0\n";
                 continue;
             }
 
             //Matches for the chosen occurrence
-            if(numOccurrences == searchedOccurrenceQuant){
-                //TODO: Print the chosen occurrence
-                for(j = 0; j < (int)numVec.size(); j++){
-                    if(numVec.at(i) == searchedNum){
-                        
-                    }
-                }
-                break;
-            }
+            cout <<  findNthOccurrence(numVec, searchedNum, searchedOccurrenceQuant) << '\n';
         }
         numVec.clear();
     }
