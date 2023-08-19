@@ -37,19 +37,19 @@ int getChosenOccurrence(map<int, vector<int>>& numMap, int searchedOcc, int sear
 
 int main(void)
 {
-    int vecElementQuant, queries;
-    int pushBackNum;
+    int listElementQuant, queries;
+    int listNum;
     int searchedOccurrence, searchedNum;
     int i;
 
     map<int, vector<int>> numMap;
 
-    while(cin >> vecElementQuant >> queries){
+    while(cin >> listElementQuant >> queries){
         numMap.clear();
 
-        for(i = 0;i < vecElementQuant; i++){
-            cin >> pushBackNum;
-            numMap[pushBackNum].push_back(i);
+        for(i = 0;i < listElementQuant; i++){
+            cin >> listNum;
+            numMap[listNum].push_back(i);
         }
 
         while(queries--){
